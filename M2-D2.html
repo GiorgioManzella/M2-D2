@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<!-- MANDATORY JS EXERCISES (create a different file for this exercise)
+    1) Save this array in a variable called genres: ["Comedy", "Drama", "Romance", "Horror", "Sci-Fi", "Documentary"]
+    2) Create an unordered list using JavaScript and save it in a variable
+    3) Cycle the array and create a list-item via JavaScript for every element
+    4) Insert the genere as text in the list-item
+    5) Append the list items in the unordered list
+    6) Append the unordered list in the document. The list should appear in the page.
+-->
+
+<!-- M2-D2 ASSIGNMENT TOPIC
+You are creating a website to showcase your favourite music albums.
+In this page you will have a short biography section about yourself, the top albums of your life, 
+the worst album you ever listened to and everything related to the music you love.
+
+ASSIGNMENT RULES
+- The project must be pushed to a new repository and linked in EduFlow by the end of the day.
+- You can google / use StackOverflow BUT we suggest you to use just the material provided and documentation.
+- To test the page, open it with your browser and inspect it with developer tools / device emulator.
+- Use Bootstrap4.6 classes to create the page.
+- Use containers, rows and cols in order to achieve a great responsive layout.
+
+NOTE:
+Even the most experienced designers need inspiration.
+Spend some time surfing the web researching the best way of representing the albums you love.
+Could be the Amazon way, the Spotify or Apple music way or any other music collection out there.
+
+HINT: Manage your time in order to finish the structure and responsiveness before focusing on the details.
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- IMPORT ALL THE BOOTSTRAP RELATED CSS & SCRIPTS-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      /* EXERCISE 1
+            For every Album displayed in the page we'd like to have a consistent appearence.
+            Create the template of an Album component (you can start from a bootstrap one or create your own)
+            You will use it to display every album in the page.
+            
+            You should have consistency in these elements:
+            - The album card
+            - The album cover
+            - The album title
+            - The album group / singer / dj
+            - The album genre
+            - The album duration
+            - etc
+
+            create CSS rules to style them if needed
+            ...to make sure every Album component looks the same.
+         */
+
+      .sidebar {
+        margin: 0;
+        padding: 0;
+        width: 200px;
+        background-color: #f1f1f1;
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+      }
+
+      /* Sidebar links */
+      .sidebar a {
+        display: block;
+        color: black;
+        padding: 16px;
+        text-decoration: none;
+      }
+
+      /* Active/current link */
+      .sidebar a.active {
+        background-color: #555;
+        color: white;
+      }
+
+      /* Links on mouse-over */
+      .sidebar a:hover:not(.active) {
+        background-color: #555;
+        color: white;
+      }
+
+      /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+      div.content {
+        margin-left: 200px;
+        padding: 1px 16px;
+        height: 1000px;
+      }
+
+      /* On screens that are less than 700px wide, make the sidebar into a topbar */
+      @media screen and (max-width: 700px) {
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+        }
+        .sidebar a {
+          float: left;
+        }
+        div.content {
+          margin-left: 0;
+        }
+      }
+
+      /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+      @media screen and (max-width: 400px) {
+        .sidebar a {
+          text-align: center;
+          float: none;
+        }
+      }
+
+      @media (min-width: 768px) and (max-width: 991px) {
+        .custom-col {
+          background-color: coral;
+        }
+      }
+
+      /* @media (min-width: 992px) {
+            .custom-col {
+                background-color: transparent;
+            }
+        } */
+
+      @media (min-width: 900px) and (max-width: 991px) {
+        .container,
+        .container-md,
+        .container-sm {
+          max-width: 890px;
+        }
+      }
+    </style>
+    <nav class="navbar navbar-light" style="background-color: #171718">
+      <div class="container">
+        <a class="navbar-brand text-light" href="#">
+          <img
+            src="https://www.freepnglogos.com/uploads/apple-music-logo-circle-png-28.png"
+            alt=""
+            width="30"
+            height="24"
+          />
+          Visual Music</a
+        >
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link active text-light" aria-current="page" href="#"
+              >Active</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="#">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </head>
+
+  <body>
+    <div class="sidebar" style="background-color: #171718">
+      <a class="active" href="#home">Home</a>
+      <a href="#news" class="text-light">Active</a>
+      <a href="#contact" class="text-light">Contact</a>
+      <a href="#about" class="text-light">About</a>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-2 cols-md-3 col-lg-4">
+          <img
+            class="img-fluid"
+            src="https://e.snmc.io/i/1200/s/c240942b24f031f2b867a16d71a3e241/1612455"
+            alt=""
+          />
+          <h3>Eminem</h3>
+          <p>The Marshal Mathers LP</p>
+          <p>2004</p>
+        </div>
+        <div class="col-sm-2 cols-md-3 col-lg-4">
+          <img
+            class="img-fluid"
+            src="https://c8.alamy.com/comp/2FY5XPM/punk-rock-band-paramore-music-album-on-vinyl-record-lp-disc-titled-riot!-album-cover-2FY5XPM.jpg"
+            alt=""
+          />
+          <h3>Paramore</h3>
+          <p>Riot</p>
+          <p>2007</p>
+        </div>
+        <div class="col-sm-2 cols-md-3 col-lg-4">
+          <img
+            class="img-fluid"
+            src="https://i.scdn.co/image/ab67616d0000b2733b175d94538ad983d1c7d676"
+            alt=""
+          />
+          <h3>Allevi</h3>
+          <p>evolution</p>
+          <p>2008</p>
+        </div>
+      </div>
+    </div>
+    <!-- EXERCISE 2 ------------------------------------------------------------DONE
+            Implement a navigation bar using the bootstrap component
+            This navigation bar must link every section in your page.
+        -->
+
+    <!-- EXERCISE 3
+            Create a responsive section for your favourite albums.
+            In this section you should have:
+            - 4 albums per row when the screen is very large
+            - 3 albums per row when you are on a tablet (or a smaller viewport)
+            - 2 albums per row when you are on a small screen
+        -->
+
+    <!-- EXERCISE 4
+            Create a section for the album reviews.
+            Pick one of your favourite albums, and create a section with:
+            - Cover Image
+            - Title
+            - Band
+            - Duration
+            - Genre
+            - Tracklist
+            - ... And whatever you think it's interesting about it!
+        -->
+
+    <!-- EXERCISE 5
+            Worst album list! Choose the albums you dislike or some you think are overrated and list it
+            in this "hall of shame" chart! 
+        -->
+
+    <!-- EXERCISE 6
+            Do you have any musician / band you admire or you are a fan of?
+            This section is dedicated to him / her / them!
+            Feel free to experiment in this part of the page.
+        -->
+
+    <!-- EXERCISE 7
+            Just covers!
+            Create a tapestry of album pictures. Every album picture must be "squared" (use CSS to achieve that).
+            Put at least 20 covers (also repeated) to have a nice tapestry effect and see how Bootstrap handles it.
+        -->
+
+    <!-- EXERCISE 8
+            Implement a footer with some information / social links.
+        -->
+
+    <!-- ############ EXTRA:
+        EXERCISE 9
+            Create an album details area which will be toggled on and off by clicking on the album image.
+        -->
+
+    <!-- EXERCISE 10
+            Add a button to each section. By clicking on it the section body appears (if hidden) or disappears (if visible).
+            (hint: look for a boostrap component that can handle the job for you. You can always rely on DOM manipulation if you can't find it)
+        -->
+
+    <!--
+         EXERCISE 11
+            Add in the footer the number of how many ALBUMS are present on the page. 
+            Create the JavaScript logic that runs when the page finished loading and 
+            counts the albums and applies the number in the area of the footer you've previously decided.
+        -->
+    <footer
+      class="text-center text-white navbar fixed-bottom col"
+      style="background-color: #171718"
+    >
+      <div class="container p-4">
+        <section class="">
+          <div class="row">
+            <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+              <div
+                class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                data-ripple-color="light"
+              >
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/c/cb/KDA_ALL_OUT.jpg"
+                  class="w-100"
+                />
+                <a href="#!">
+                  <div
+                    class="mask"
+                    style="background-color: rgba(251, 251, 251, 0.2)"
+                  ></div>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+              <div
+                class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                data-ripple-color="light"
+              >
+                <img
+                  src="https://studiosol-a.akamaihd.net/uploadfile/letras/fotos/1/a/6/b/1a6b4f5d7e7578e6f2463b5201b3d7c1.jpg"
+                  class="w-100"
+                />
+                <a href="#!">
+                  <div
+                    class="mask"
+                    style="background-color: rgba(251, 251, 251, 0.2)"
+                  ></div>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+              <div
+                class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                data-ripple-color="light"
+              >
+                <img
+                  src="https://media.resources.festicket.com/image/300x300/center/top/filters:quality(70)/www/artists/Gorillaz_New.jpg"
+                  class="w-100"
+                />
+                <a href="#!">
+                  <div
+                    class="mask"
+                    style="background-color: rgba(251, 251, 251, 0.2)"
+                  ></div>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+              <div
+                class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                data-ripple-color="light"
+              >
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/4/41/By_The_Way_by_Theory_of_a_Deadman.jpg"
+                  class="w-100"
+                />
+                <a href="#!">
+                  <div
+                    class="mask"
+                    style="background-color: rgba(251, 251, 251, 0.2)"
+                  ></div>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+              <div
+                class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                data-ripple-color="light"
+              >
+                <img
+                  src="https://m.media-amazon.com/images/I/71Gq22xYufL._AC_SX466_.jpg"
+                  class="w-100"
+                />
+                <a href="#!">
+                  <div
+                    class="mask"
+                    style="background-color: rgba(251, 251, 251, 0.2)"
+                  ></div>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+              <div
+                class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                data-ripple-color="light"
+              >
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRheAC11B-I6MfmrVTNxE7hGODbtxtBIZ_Szw&usqp=CAU"
+                  class="w-100"
+                />
+                <a href="#!">
+                  <div
+                    class="mask"
+                    style="background-color: rgba(251, 251, 251, 0.2)"
+                  ></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
